@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="font_fontawesome" translatable="false">fontawesome-webfont.ttf</string>
+    <string name="font_ionicons" translatable="false">ionicons.ttf</string>
+    <string name="font_thesansbold" translatable="false">thesans-bold.otf</string>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.iamutkarshtiwari.bakingapp"
+    android:versionCode="110"
+    android:versionName="1.1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.1" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <provider
+            android:name="com.github.iamutkarshtiwari.bakingapp.database.RecipesContentProvider"
+            android:authorities="recipesContentProvider" />
+
+        <receiver
+            android:name="com.github.iamutkarshtiwari.bakingapp.AppWidget"
+            android:label="Recipes Ingredients" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_info" />
+        </receiver>
+
+        <activity android:name="com.github.iamutkarshtiwari.bakingapp.activities.SelectRecipe" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.github.iamutkarshtiwari.bakingapp.activities.SelectRecipeStep" />
+        <activity android:name="com.github.iamutkarshtiwari.bakingapp.activities.SelectRecipeStepDetailContainer" />
+    </application>
+
+</manifest>

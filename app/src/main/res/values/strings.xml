@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BakingApp</string>
+    <string name="api_recipes_url">https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json</string>
+    <string name="NoInternet">No Internet Connectivity</string>
+    <string name="ServerError">Server Error</string>
+    <string name="progress_title">Loading ...</string>
+    <string name="progress_message">Please wait</string>
+
+</resources>
