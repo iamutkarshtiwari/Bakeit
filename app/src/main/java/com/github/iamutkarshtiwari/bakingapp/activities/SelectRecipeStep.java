@@ -1,8 +1,6 @@
 package com.github.iamutkarshtiwari.bakingapp.activities;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +15,6 @@ import com.github.iamutkarshtiwari.bakingapp.model.RecipeModel;
 import com.github.iamutkarshtiwari.bakingapp.model.RecipeStepsModel;
 import com.github.iamutkarshtiwari.bakingapp.utils.UTils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SelectRecipeStep extends AppCompatActivity {
@@ -36,6 +33,7 @@ public class SelectRecipeStep extends AppCompatActivity {
 
     public RecipeStepsModel selectedRecipeModel;
     public long [] currentPosition;
+    public boolean exoPlayerState;
 
     public static boolean twoPane = false;
     public static FrameLayout item_detail_container;
@@ -61,11 +59,13 @@ public class SelectRecipeStep extends AppCompatActivity {
         if(savedInstanceState!=null){
             Log.d(TAG,"savedInstanceState!=null");
             currentPosition = savedInstanceState.getLongArray("currentPosition");
+            exoPlayerState = savedInstanceState.getBoolean("playerState");
         }else{
             Log.d(TAG,"savedInstanceState==null");
             currentPosition = new long[SelectRecipeStep.listRecipeStepss.size()];
             for(int i=0;i<SelectRecipeStep.listRecipeStepss.size();i++){
                 currentPosition[i] = -1;
+                exoPlayerState = false;
             }
         }
 
@@ -85,21 +85,19 @@ public class SelectRecipeStep extends AppCompatActivity {
         if (listPosition != -1) {
             linearLayoutManager.scrollToPosition(listPosition);
         }
-        if (UTils.getScreenOrientation(this) == Configuration.ORIENTATION_PORTRAIT) {
-            twoPane = false;
-        }
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("listPosition", linearLayoutManager.findFirstVisibleItemPosition());
+        outState.putBoolean("playerState", exoPlayerState);
         outState.putLongArray("currentPosition",currentPosition);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         listPosition = savedInstanceState.getInt("listPosition");
+        exoPlayerState = savedInstanceState.getBoolean("playerState");
         super.onRestoreInstanceState(savedInstanceState);
     }
 

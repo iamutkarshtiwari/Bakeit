@@ -23,6 +23,7 @@ public class SelectRecipeStepDetailContainer extends AppCompatActivity {
     public RecipeStepsModel recipeStepsModel;
     public int position=-1;
     public long [] currentPosition = new long[SelectRecipeStep.listRecipeStepss.size()];
+    public boolean exoPlayerState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +34,14 @@ public class SelectRecipeStepDetailContainer extends AppCompatActivity {
             Log.d(TAG,"savedInstanceState!=null");
             recipeStepsModel = (RecipeStepsModel) savedInstanceState.getSerializable("step");
             currentPosition = savedInstanceState.getLongArray("currentPosition");
+            exoPlayerState = savedInstanceState.getBoolean("playerState");
         }else{
             Log.d(TAG,"savedInstanceState==null");
             recipeStepsModel = (RecipeStepsModel) getIntent().getExtras().getSerializable("step");
             for(int i=0;i<SelectRecipeStep.listRecipeStepss.size();i++){
                 currentPosition[i] = -1;
             }
+            exoPlayerState = false;
         }
         position = getIntent().getExtras().getInt("position");
 
@@ -46,7 +49,19 @@ public class SelectRecipeStepDetailContainer extends AppCompatActivity {
 
     }
 
-    public void attachFragment(RecipeStepsModel recipeStepsModel,int position){
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    public void attachFragment(RecipeStepsModel recipeStepsModel, int position){
         Fragment recipeStepDetail = SelectRecipeStepDetail.newInstance(recipeStepsModel.getRecipe(),position);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -60,5 +75,7 @@ public class SelectRecipeStepDetailContainer extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putSerializable("step", recipeStepsModel);
         outState.putLongArray("currentPosition",currentPosition);
+        outState.putBoolean("playerState", exoPlayerState);
     }
+
 }

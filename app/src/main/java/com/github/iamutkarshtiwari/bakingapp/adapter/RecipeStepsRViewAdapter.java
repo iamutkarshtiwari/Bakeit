@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,15 +104,17 @@ public class RecipeStepsRViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             }
 
             String thumbnailUrl = recipeSteps.getThumbnailURL();
-            if (thumbnailUrl.length() > 0) {
-                // Downloads the movie image from url
+            // Downloads the movie image from url
+            if (!TextUtils.isEmpty(thumbnailUrl)) {
                 Picasso.with(con)
                         .load(thumbnailUrl)
+                        .error(R.drawable.ic_image)
                         .fit()
                         .into(((View_Holder_Step) holder).thumbnail);
             } else {
                 ((View_Holder_Step) holder).thumbnail.setVisibility(View.GONE);
             }
+
 
             ((View_Holder_Step)holder).txtTitle.setText(recipeSteps.getShortDescription());
             ((View_Holder_Step)holder).cardRecipeStep.setOnClickListener(new View.OnClickListener() {

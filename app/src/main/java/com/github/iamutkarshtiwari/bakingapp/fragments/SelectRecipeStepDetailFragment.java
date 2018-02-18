@@ -75,10 +75,20 @@ public class SelectRecipeStepDetailFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (exoPlayer == null) {
+            intializePlayer(recipeStepsModel.getVideoURL());
+            exoPlayer.setPlayWhenReady(exoPlayerState);
+        }
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        exoPlayerState = exoPlayer.getPlayWhenReady();
-        stopPlayer();
+        if (exoPlayer != null ) {
+            exoPlayerState = exoPlayer.getPlayWhenReady();
+        }
     }
 
     @Override
@@ -87,12 +97,15 @@ public class SelectRecipeStepDetailFragment extends Fragment {
         if(!recipeStepsModel.getVideoURL().isEmpty()) {
             if(SelectRecipeStep.twoPane){
                 ((SelectRecipeStep) mContext).currentPosition[position] = exoPlayer.getCurrentPosition();
+                ((SelectRecipeStep) mContext).exoPlayerState = exoPlayer.getPlayWhenReady();
             }else{
                 ((SelectRecipeStepDetailContainer) mContext).currentPosition[position] = exoPlayer.getCurrentPosition();
+                ((SelectRecipeStepDetailContainer) mContext).exoPlayerState = exoPlayer.getPlayWhenReady();
             }
             stopPlayer();
         }
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -128,7 +141,7 @@ public class SelectRecipeStepDetailFragment extends Fragment {
             intializePlayer(recipeStepsModel.getVideoURL());
         }
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null && exoPlayer != null) {
             exoPlayer.setPlayWhenReady(savedInstanceState.getBoolean(BUNDLE_KEY_PLAYER_STATE));
         }
 
@@ -151,9 +164,12 @@ public class SelectRecipeStepDetailFragment extends Fragment {
         if(SelectRecipeStep.twoPane){
             if(((SelectRecipeStep) mContext).currentPosition[position] != -1)
                 exoPlayer.seekTo(((SelectRecipeStep) mContext).currentPosition[position]);
+                exoPlayer.setPlayWhenReady(((SelectRecipeStep) mContext).exoPlayerState);
         }else{
-            if(((SelectRecipeStepDetailContainer) mContext).currentPosition[position] != -1)
+            if(((SelectRecipeStepDetailContainer) mContext).currentPosition[position] != -1) {
                 exoPlayer.seekTo(((SelectRecipeStepDetailContainer) mContext).currentPosition[position]);
+                exoPlayer.setPlayWhenReady(((SelectRecipeStepDetailContainer) mContext).exoPlayerState);
+            }
         }
 
 
