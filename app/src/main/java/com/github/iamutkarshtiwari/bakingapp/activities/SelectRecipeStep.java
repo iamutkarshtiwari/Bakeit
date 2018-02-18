@@ -2,10 +2,12 @@ package com.github.iamutkarshtiwari.bakingapp.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.github.iamutkarshtiwari.bakingapp.R;
@@ -48,6 +50,10 @@ public class SelectRecipeStep extends AppCompatActivity {
         if (findViewById(R.id.recipe_detail_container) != null) {
             twoPane = true;
             item_detail_container = (FrameLayout) findViewById(R.id.recipe_detail_container);
+        }
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         recipeModel = (RecipeModel) getIntent().getExtras().getSerializable("recipe");
@@ -99,9 +105,14 @@ public class SelectRecipeStep extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed() {
-            super.onBackPressed();
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+    return super.onOptionsItemSelected(item);
     }
 
 

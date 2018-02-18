@@ -24,6 +24,7 @@ import com.github.iamutkarshtiwari.bakingapp.fragments.SelectRecipeStepDetail;
 import com.github.iamutkarshtiwari.bakingapp.fragments.SelectRecipeStepDetailFragment;
 import com.github.iamutkarshtiwari.bakingapp.model.RecipeIngrediantModel;
 import com.github.iamutkarshtiwari.bakingapp.model.RecipeStepsModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -100,6 +101,18 @@ public class RecipeStepsRViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     ((View_Holder_Step) holder).cardRecipeStep.setCardBackgroundColor(Color.WHITE);
                 }
             }
+
+            String thumbnailUrl = recipeSteps.getThumbnailURL();
+            if (thumbnailUrl.length() > 0) {
+                // Downloads the movie image from url
+                Picasso.with(con)
+                        .load(thumbnailUrl)
+                        .fit()
+                        .into(((View_Holder_Step) holder).thumbnail);
+            } else {
+                ((View_Holder_Step) holder).thumbnail.setVisibility(View.GONE);
+            }
+
             ((View_Holder_Step)holder).txtTitle.setText(recipeSteps.getShortDescription());
             ((View_Holder_Step)holder).cardRecipeStep.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,6 +125,7 @@ public class RecipeStepsRViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                 }
             });
+
         }
 
 
@@ -146,7 +160,7 @@ public class RecipeStepsRViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        return listRecipeStepss.size()+1;
+        return listRecipeStepss.size() + 2;
     }
 
     public class View_Holder_Ingrediant extends RecyclerView.ViewHolder {
@@ -163,11 +177,13 @@ public class RecipeStepsRViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         CardView cardRecipeStep;
         TextView txtTitle;
+        ImageView thumbnail;
 
         View_Holder_Step(View itemView) {
             super(itemView);
             cardRecipeStep = (CardView) itemView.findViewById(R.id.cardRecipeStep);
             txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
+            thumbnail = (ImageView) itemView.findViewById(R.id.step_thumbnail);
         }
     }
 

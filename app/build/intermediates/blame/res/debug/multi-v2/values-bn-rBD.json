@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakingApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bn-rBD/values-bn-rBD.xml",
+            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakeIt/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bn-rBD/values-bn-rBD.xml",
             "map": [
                 {
                     "source": "/Users/utkarshtiwari/.gradle/caches/transforms-1/files-1.1/exoplayer-ui-r2.4.1.aar/82ddd416d2ec5033402b074047fda73c/res/values-bn-rBD/values-bn-rBD.xml",

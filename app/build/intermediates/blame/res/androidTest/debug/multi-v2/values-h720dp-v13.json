@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakingApp/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakeIt/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
                     "source": "/Users/utkarshtiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/a63e45403c19f6a9bc204b47f267fdc3/res/values-h720dp-v13/values-h720dp-v13.xml",

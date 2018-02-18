@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakingApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
+            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakeIt/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
             "map": [
                 {
                     "source": "/Users/utkarshtiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/a63e45403c19f6a9bc204b47f267fdc3/res/values-v13/values-v13.xml",

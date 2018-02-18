@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakingApp/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/utkarshtiwari/Documents/AndroidProjects/BakeIt/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/Users/utkarshtiwari/.gradle/caches/transforms-1/files-1.1/rules-0.5.aar/a8201aefc9eceee66ccdb9b512bc3e93/res/values/values.xml",

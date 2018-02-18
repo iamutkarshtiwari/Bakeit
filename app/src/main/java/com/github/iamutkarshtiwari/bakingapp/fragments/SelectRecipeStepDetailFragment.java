@@ -43,8 +43,11 @@ import com.github.iamutkarshtiwari.bakingapp.utils.UTils;
 
 public class SelectRecipeStepDetailFragment extends Fragment {
 
+    private static final String BUNDLE_KEY_PLAYER_STATE = "exoplayer_state";
+
     String TAG = this.getClass().getSimpleName();
     private SimpleExoPlayer exoPlayer;
+    private boolean exoPlayerState;
 
     SimpleExoPlayerView simpleExoPlayer;
     TextView txtDesc;
@@ -74,6 +77,7 @@ public class SelectRecipeStepDetailFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        exoPlayerState = exoPlayer.getPlayWhenReady();
         stopPlayer();
     }
 
@@ -90,6 +94,11 @@ public class SelectRecipeStepDetailFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(BUNDLE_KEY_PLAYER_STATE, exoPlayerState);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,6 +126,10 @@ public class SelectRecipeStepDetailFragment extends Fragment {
             imThumbnail.setVisibility(View.GONE);
             simpleExoPlayer.setVisibility(View.VISIBLE);
             intializePlayer(recipeStepsModel.getVideoURL());
+        }
+
+        if (savedInstanceState != null) {
+            exoPlayer.setPlayWhenReady(savedInstanceState.getBoolean(BUNDLE_KEY_PLAYER_STATE));
         }
 
 
