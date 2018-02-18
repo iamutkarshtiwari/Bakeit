@@ -89,11 +89,6 @@ public class SelectRecipeStepDetailFragment extends Fragment {
         if (exoPlayer != null ) {
             exoPlayerState = exoPlayer.getPlayWhenReady();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         if(!recipeStepsModel.getVideoURL().isEmpty()) {
             if(SelectRecipeStep.twoPane){
                 ((SelectRecipeStep) mContext).currentPosition[position] = exoPlayer.getCurrentPosition();
@@ -104,6 +99,11 @@ public class SelectRecipeStepDetailFragment extends Fragment {
             }
             stopPlayer();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 
